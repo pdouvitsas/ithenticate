@@ -1,7 +1,5 @@
 package ithenticate;
 
-
-
 public class PlagiarismIthenticateAnswer {
 	private String url;
 	private Integer ready;
@@ -24,8 +22,6 @@ public class PlagiarismIthenticateAnswer {
 
 	public void setReady(Integer ready) {
 		this.ready = ready;
-	}
-	
-	
+	}	
 	
 }

@@ -31,7 +31,6 @@ public class FetchSimilarityReport {
 	
 	private static final String ONE = "1";
 	
-	@Override
 	public byte[] getSimilarityReportByReportId (Integer reportId) {
 		RestTemplate restTemplate = new RestTemplate();
 		

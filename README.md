@@ -1,22 +1,20 @@
-# ithenticate
-ithenticate download similarity report
+# Downloading similarity report using ithenticate
 
-ithenticate API (The API is based on the XML-RPC specification) has methods for submitting documents and a Get Similarity Report method which returns a set of urls to report data for a document section but it this API you do not have the ability to download a similarity report programmatically (the actual pdf). 
-By observing the calls in their website I was able to download the similarity report by using rest web services.
+
+ithenticate API (the API is based on the XML-RPC specification) has methods for submitting documents and a Get Similarity Report method which returns a set of urls to report data for a document section. However, in this API you do not have the ability to download a similarity report (the actual pdf).
+
+By observing the calls in their website, I was able to download the similarity report using Rest Web Services.
   
-The framework that was used is Spring 3.
+The framework used was Spring 3.
 
-I have created two classes
+I created two classes. The class PlagiarismIthenticateAnswer was used to parse the answer from the rest web services.
+The class FetchSimilarityReport contained the code that got the actual pdf file.
 
-The class PlagiarismIthenticateAnswer is used to parse the answer from the rest web services.
-
-The class FetchSimilarityReport contains the code that gets the actual pdf file.
-
-Since, we are not using the XML-RPC API we need to login.
+Since, we are not using the XML-RPC API but the Rest Web Rervices we need to login (before calling the Rest Web Services).
 
 By making a post request (MediaType.APPLICATION_FORM_URLENCODED) to the login url using your password and username you are able to login.
 
-When you login in ithenticate website and you press the "Download Pdf of current report" you will be able to see these next calls in the network (in the browser)
+When you login in ithenticate website and you press the "Download Pdf of current report", you will be able to see these next calls in the network (in the browser)
 
 First call (reportId is an actual report id)  <br>
 Request URL:https://app.ithenticate.com/paper/{reportId}/queue_pdf?&lang=en_us&output=json   <br>
@@ -56,7 +54,7 @@ So in order to make the first call (POST request with as:1 and or_type="similari
 	String urlPrintStatus = queuePdfResult.getBody().getUrl();
   
   
- After the url is returned from the above call, this url is used in the subsequent web sercice calls until the field "ready" equals 1
+ After the url is returned from the above call, this url is used in the subsequent web sercice calls until the field "ready" equals 1.
  
  So, this code is used to loop until a successful call is returned
  
@@ -77,7 +75,7 @@ So in order to make the first call (POST request with as:1 and or_type="similari
 		timesTried++;
 	}
     
-When the successful response is returned (the field ready=1 and there is an actual url returned), the url that is returned from the above code is used to fetch the pdf document
+When the successful response is returned (the field ready=1 and there is an actual url returned), the url that is returned from the above code is used to fetch the pdf document.
  
 The code to download the pdf follows
  
@@ -101,4 +99,4 @@ The code to download the pdf follows
 		return null;
 	}
     
-Hope this helps someone.
+Hope the above was helpful.

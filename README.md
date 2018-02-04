@@ -1,4 +1,4 @@
-# Downloading similarity report using ithenticate
+# How to download similarity report using ithenticate
 
 
 ithenticate API (the API is based on the XML-RPC specification) has methods for submitting documents and a Get Similarity Report method which returns a set of urls to report data for a document section. However, in this API you do not have the ability to download a similarity report (the actual pdf).
